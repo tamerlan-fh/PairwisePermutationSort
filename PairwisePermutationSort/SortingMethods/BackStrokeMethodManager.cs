@@ -40,7 +40,7 @@ namespace PairwisePermutationSort.SortingMethods
             if (!tree.ConteinsNode(array))
                 return new SortingResult(string.Format("Заданный массив чисел [{0}] невозможно привести к требуемому виду\r\n\r\n{1}",
                         string.Join(",", array),
-                        string.Format("произведено {0} вариантов перестановок", tree.Nodes.Count)));
+                        string.Format("в процессе сортировки было произведено {0} перестановок", tree.Nodes.Count)));
 
             return CreateSortingResult(tree.FindNode(array), string.Format("произведено {0} вариантов перестановок", tree.Nodes.Count));
         }

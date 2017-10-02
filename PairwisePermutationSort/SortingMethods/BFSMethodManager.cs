@@ -54,7 +54,7 @@ namespace PairwisePermutationSort.SortingMethods
 
             return new SortingResult(string.Format("Заданный массив чисел [{0}] невозможно привести к требуемому виду\r\n\r\n{1}",
                 string.Join(",", array),
-                string.Format("произведено {0} вариантов перестановок", nodes.Count)));
+                string.Format("в процессе сортировки было произведено {0} перестановок", nodes.Count)));
         }
     }
 }
