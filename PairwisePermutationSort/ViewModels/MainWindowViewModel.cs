@@ -77,7 +77,7 @@ namespace PairwisePermutationSort.ViewModels
 
         private void About()
         {
-            MessageBox.Show("Все предложения, замечания и ругательства просьба не высылать на адрес tamerlan-fh@ya.ru\r\n\r\nУфа, 2007г ", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Все предложения, замечания и ругательства просьба не высылать на адрес tamerlan-fh@ya.ru\r\n\r\nУфа, 2017г ", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         #region Validation
