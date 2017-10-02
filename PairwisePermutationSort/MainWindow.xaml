@@ -5,8 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PairwisePermutationSort"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="Сортировка попарными перестановками" Height="350" Width="525"  WindowStartupLocation="CenterScreen" MinHeight="200" MinWidth="500" Icon="Resurses/usatu.ico" >
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type ValidationError}">
+            <TextBlock FontStyle="Italic" Foreground="Red" Margin="0,1" Text="{Binding Path=ErrorContent}" TextWrapping="Wrap"/>
+        </DataTemplate>
+
+        <Style TargetType="MenuItem">
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+        <SolidColorBrush x:Key="brushWatermarkForeground" Color="DarkGray" />
+
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top">
+            <Menu KeyboardNavigation.TabNavigation="Cycle" >
+                <MenuItem Header="_Файл" Margin="15,0,0,0">
+                    <MenuItem Header="_Сортировать" Command="{Binding Path=СортироватьCommand}" />
+                    <MenuItem Header="_Выход" Command="{Binding Path=CloseCommand}" />
+                </MenuItem>
+                <MenuItem Header="_Помощь">
+                    <MenuItem Header="_О программе" Command="{Binding Path=AboutCommand}"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="15,15,15,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition MaxWidth="200"/>
+                    <ColumnDefinition MaxWidth="200"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Grid.Column="0"  VerticalAlignment="Bottom" Margin="0,0,2,2">
+                    <TextBlock Margin="5,2" Text="Введите числовую последовательность..." FontStyle="Italic" Foreground="{StaticResource brushWatermarkForeground}" Visibility="{Binding ElementName=inputDataTxt, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <TextBox Grid.Row="0" Grid.Column="0" x:Name="inputDataTxt" Text="{Binding Path=InputString, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{x:Null}" Background="Transparent" />
+                </Grid>
+                <ContentPresenter Grid.Row="1" Grid.Column="0" Content="{Binding ElementName=inputDataTxt, Path=(Validation.Errors).CurrentItem}" />
+
+                <ComboBox Grid.Column="1" ItemsSource="{Binding Path=Methods}" SelectedItem="{Binding Path=SelectedMethod, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Height="{Binding ElementName=inputDataTxt, Path=Height}" Margin="2"/>
+                <Button Grid.Column="2" Content="Сортировать" Command="{Binding Path=SortingCommand}" Margin="2,0,0,2" VerticalAlignment="Bottom" Height="{Binding ElementName=inputDataTxt, Path=Height}" />
+            </Grid>
+            <!--<TextBox Grid.Row="1" Text="{Binding Path=РезультирующаяСтрока, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" IsReadOnly="True" Margin="15" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="auto"/>-->
+            <FlowDocumentPageViewer Grid.Row="1" Document="{Binding Path= Document, UpdateSourceTrigger=PropertyChanged}" Margin="15" />
+        </Grid>
+    </DockPanel>
 </Window>
