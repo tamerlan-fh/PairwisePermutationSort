@@ -110,7 +110,7 @@ namespace PairwisePermutationSort.ViewModels
                         if (bytes.Length != bytes.Distinct().Count())
                             return "В последовательности встречаются повторяющиеся значения";
 
-                        if (bytes.Length > dimension)
+                        if (bytes.Length < dimension)
                             return string.Empty;
 
                         if (bytes.Length > dimension)
