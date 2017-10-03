@@ -42,7 +42,7 @@ namespace PairwisePermutationSort.SortingMethods
                         string.Join(",", array),
                         string.Format("в процессе сортировки было произведено {0} перестановок", tree.Nodes.Count)));
 
-            return CreateSortingResult(tree.FindNode(array), string.Format("произведено {0} вариантов перестановок", tree.Nodes.Count));
+            return CreateSortingResult(tree.FindNode(array), string.Format("в процессе сортировки было произведено {0} перестановок", tree.Nodes.Count));
         }
 
         protected override SortingResult CreateSortingResult(Node node, string comment = "")

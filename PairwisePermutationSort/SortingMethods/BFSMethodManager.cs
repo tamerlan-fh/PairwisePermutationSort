@@ -47,7 +47,7 @@ namespace PairwisePermutationSort.SortingMethods
                     queue.Enqueue(newNode);
 
                     if (newNode.IsSorting)
-                        return CreateSortingResult(newNode, string.Format("произведено {0} вариантов перестановок", nodes.Count));
+                        return CreateSortingResult(newNode, string.Format("в процессе сортировки было произведено {0} перестановок", nodes.Count));
 
                 }
             }

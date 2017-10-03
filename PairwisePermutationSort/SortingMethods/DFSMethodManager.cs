@@ -50,7 +50,7 @@ namespace PairwisePermutationSort.SortingMethods
 
                     currentNode.AddChild(newNode);
                     if (newNode.IsSorting)
-                        return CreateSortingResult(newNode, string.Format("произведено {0} вариантов перестановок", nodes.Count));
+                        return CreateSortingResult(newNode, string.Format("в процессе сортировки было произведено {0} перестановок", nodes.Count));
 
                     if (!nodes.Contains(newNode))
                         stack.Push(newNode);
