@@ -66,10 +66,10 @@ namespace PairwisePermutationSort.Models
             {
                 foreach (var iteration in Iterations)
                     document.Blocks.Add(iteration.GetParagraph());
-                document.Blocks.Add(new Paragraph(new Run(string.Format("\r\n\r\n{0}", Comment))));
+                document.Blocks.Add(new Paragraph(new Italic(new Run(string.Format("\r\n\r\n{0}", Comment)))));
             }
             else
-                document.Blocks.Add(new Paragraph(new Run(Comment)));
+                document.Blocks.Add(new Paragraph(new Italic(new Run(Comment))));
 
             document.FontFamily = new FontFamily("Arial");
             document.LineHeight = 3;

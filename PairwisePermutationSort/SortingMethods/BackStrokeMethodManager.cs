@@ -35,10 +35,10 @@ namespace PairwisePermutationSort.SortingMethods
                 tree = BuildTree();
 
             if (tree.Root.ContainsArray(array))
-                return new SortingResult(string.Format("Заданая последовательность чисел [{0}] является отсортированной", string.Join(",", array)));
+                return new SortingResult(string.Format("Заданая последовательность [{0}] уже имеет сортированный вид", string.Join(",", array)));
 
             if (!tree.ConteinsNode(array))
-                return new SortingResult(string.Format("Заданный массив чисел [{0}] невозможно привести к требуемому виду\r\n\r\n{1}",
+                return new SortingResult(string.Format("Заданая последовательность [{0}] не приводится к сортированному виду путем парных перестановок\r\n\r\n{1}",
                         string.Join(",", array),
                         string.Format("в процессе сортировки было произведено {0} перестановок", tree.Nodes.Count)));
 
