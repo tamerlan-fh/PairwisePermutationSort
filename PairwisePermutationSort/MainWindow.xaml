@@ -50,7 +50,11 @@
 
                 <Grid Grid.Row="0" Grid.Column="0"  VerticalAlignment="Bottom" Margin="0,0,2,2">
                     <TextBlock Margin="5,2" Text="Введите числовую последовательность..." FontStyle="Italic" Foreground="{StaticResource brushWatermarkForeground}" Visibility="{Binding ElementName=inputDataTxt, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                    <TextBox Grid.Row="0" Grid.Column="0" x:Name="inputDataTxt" Text="{Binding Path=InputString, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{x:Null}" Background="Transparent" />
+                    <TextBox Grid.Row="0" Grid.Column="0" x:Name="inputDataTxt" Text="{Binding Path=InputString, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Validation.ErrorTemplate="{x:Null}" Background="Transparent" >
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding Path=SortingCommand}" Key="Enter" />
+                        </TextBox.InputBindings>
+                    </TextBox>
                 </Grid>
                 <ContentPresenter Grid.Row="1" Grid.Column="0" Content="{Binding ElementName=inputDataTxt, Path=(Validation.Errors).CurrentItem}" />
 
