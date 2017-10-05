@@ -1,4 +1,5 @@
-﻿using PairwisePermutationSort.SortingMethods;
+﻿using PairwisePermutationSort.Models;
+using PairwisePermutationSort.SortingMethods;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,8 @@ namespace PairwisePermutationSort.ViewModels
             SortingCommand = new RelayCommand(param => Sort(), param => CanSort());
             CloseCommand = new RelayCommand(param => App.Current.Shutdown());
             AboutCommand = new RelayCommand(param => About());
+
+            InputString = "541632";
         }
 
         /// <summary>
@@ -54,7 +57,7 @@ namespace PairwisePermutationSort.ViewModels
             set { inputString = value; OnPropertyChanged("InputString"); }
         }
         private string inputString;
-      
+
         /// <summary>
         /// форматированный текст с результатом сортировки
         /// </summary>
@@ -64,12 +67,21 @@ namespace PairwisePermutationSort.ViewModels
             set { документРезультатов = value; OnPropertyChanged("Document"); }
         }
         private FlowDocument документРезультатов;
+
+        public SortingResult Result
+        {
+            get { return result; }
+            set { result = value; OnPropertyChanged("Result"); }
+        }
+        private SortingResult result;
         private void Sort()
         {
-            var result = SelectedMethod.Command(array);
-            Document = result.CreateDocument();
+            //var result = SelectedMethod.Command(array);
+            //Document = result.CreateDocument();
+            Result = SelectedMethod.Command(array);
+            Document = Result.CreateDocument();
         }
-     
+
         private bool CanSort()
         {
             return (array != null && array.Length == dimension);

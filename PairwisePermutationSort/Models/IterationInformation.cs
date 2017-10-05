@@ -36,6 +36,31 @@ namespace PairwisePermutationSort.Models
         /// Сцепка парных элементов, участвующих в перестановке на данной итерации
         /// </summary>
         public Couple PermutationPair { get; private set; }
+
+        public bool IsLast
+        {
+            get { return PermutationPair == null; }
+        }
+        public int IndexOfLeft
+        {
+            get
+            {
+                if (PermutationPair == null)
+                    return -1;
+                else
+                    return Array.IndexOf(NumbersArray, PermutationPair.Left[0]);
+            }
+        }
+        public int IndexOfRight
+        {
+            get
+            {
+                if (PermutationPair == null)
+                    return -1;
+                else
+                    return Array.IndexOf(NumbersArray, PermutationPair.Right[0]);
+            }
+        }
         public override string ToString()
         {
             return string.Format("{0}\t{1}", string.Join(",", NumbersArray), PermutationPair);
@@ -48,21 +73,18 @@ namespace PairwisePermutationSort.Models
             if (PermutationPair == null)
                 return new Paragraph(new Run(string.Join(separator, NumbersArray)));
 
-            var indexOfLeft = Array.IndexOf(NumbersArray, PermutationPair.Left[0]);
-            var indexOfRight = Array.IndexOf(NumbersArray, PermutationPair.Right[0]);
-
             int line1Position = 0;
-            int line1Length = indexOfLeft;
+            int line1Length = IndexOfLeft;
             var line1 = new Run(string.Format("{0}", line1Length == 0 ? "" : string.Format("{1}{0}", separator, string.Join(separator, NumbersArray.Skip(line1Position).Take(line1Length)))));
             var line2 = new Bold(new Run(string.Join(separator, PermutationPair.Left)));
 
-            int line3Position = indexOfLeft + PermutationPair.Left.Length;
-            int line3Length = indexOfRight - indexOfLeft - PermutationPair.Left.Length;
+            int line3Position = IndexOfLeft + PermutationPair.Left.Length;
+            int line3Length = IndexOfRight - IndexOfLeft - PermutationPair.Left.Length;
             var line3 = new Run(string.Format("{0}", line3Length == 0 ? separator : string.Format("{0}{1}{0}", separator, string.Join(separator, NumbersArray.Skip(line3Position).Take(line3Length)))));
             var line4 = new Bold(new Run(string.Join(separator, PermutationPair.Right)));
 
-            int line5Position = indexOfRight + PermutationPair.Right.Length;
-            int line5Length = NumbersArray.Length - indexOfRight - PermutationPair.Right.Length;
+            int line5Position = IndexOfRight + PermutationPair.Right.Length;
+            int line5Length = NumbersArray.Length - IndexOfRight - PermutationPair.Right.Length;
             var line5 = new Run(string.Format("{0}", line5Length == 0 ? "" : string.Format("{0}{1}", separator, string.Join(separator, NumbersArray.Skip(line5Position).Take(line5Length)))));
             //var line6 = new Run(string.Format("\t"));
             //var line7 = new Bold(new Run(string.Join(" ", ПрименимаяПерестановка.ЛеваяПара)));
