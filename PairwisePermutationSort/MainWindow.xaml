@@ -90,7 +90,7 @@
                         <cntrl:TransformControl BorderThickness="1" Padding="10" ClipToBounds="True" ZoomFactor="1.1" MinZoomScale="{Binding ElementName=ZoomSlider, Path=Minimum}" MaxZoomScale="{Binding ElementName=ZoomSlider, Path=Maximum}" ZoomScale="{Binding ElementName=ZoomSlider, Path=Value, Mode=TwoWay}" >
                             <cntrl:PairwisePermutationViewer  PairwisePermutationData="{Binding Result, UpdateSourceTrigger=PropertyChanged}" />
                         </cntrl:TransformControl>
-                        <Slider  Width="150" x:Name="ZoomSlider" Minimum="0.3" Maximum="5" Value="1.0" Margin="5" TickPlacement="TopLeft" AutoToolTipPlacement="TopLeft" VerticalAlignment="Bottom" />
+                        <Slider  Width="150" x:Name="ZoomSlider" Minimum="0.3" Maximum="10" Value="1.0" Margin="5" TickPlacement="TopLeft" AutoToolTipPlacement="TopLeft" VerticalAlignment="Bottom" Visibility="Hidden"/>
                     </Grid>
                 </TabItem>
             </TabControl>

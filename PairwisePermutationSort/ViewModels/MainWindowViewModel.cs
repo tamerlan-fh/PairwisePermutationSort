@@ -27,7 +27,6 @@ namespace PairwisePermutationSort.ViewModels
             CloseCommand = new RelayCommand(param => App.Current.Shutdown());
             AboutCommand = new RelayCommand(param => About());
 
-            InputString = "541632";
         }
 
         /// <summary>
